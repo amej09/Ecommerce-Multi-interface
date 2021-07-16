@@ -4,21 +4,19 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.EMI.bean.client;
 import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
-@Service
+@Service("clientIPrompl")
 public class clientIPrompl implements clientservice{
 	@Autowired
 	private clientDao cd;
 	
-	@Autowired
-	public clientIPrompl() {
-		super();
-	}
+
 
 	@Override
 	public client findById(Long id) {

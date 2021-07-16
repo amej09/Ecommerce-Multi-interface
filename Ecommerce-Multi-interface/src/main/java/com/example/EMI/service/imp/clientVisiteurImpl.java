@@ -3,13 +3,14 @@ package com.example.EMI.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.EMI.bean.client;
 import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
-@Service
+@Service("clientVisiteurImpl")
 public class clientVisiteurImpl implements clientservice{
 	@Autowired
 	private clientDao cd;

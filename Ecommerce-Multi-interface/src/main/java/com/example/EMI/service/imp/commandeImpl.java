@@ -3,6 +3,7 @@ package com.example.EMI.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.example.EMI.bean.client;
@@ -18,7 +19,12 @@ public class commandeImpl implements commandeService {
 	@Autowired
 	private commandeDoa cd;
 	
-	private clientservice servcli;
+	@Qualifier("clientIPrompl")
+	private clientservice servclipro;
+	
+	@Qualifier("clientVisiteurImpl")
+	private clientservice servclivi;
+	
 	@Autowired
 	private produitService ps ;
 	
@@ -51,20 +57,25 @@ public class commandeImpl implements commandeService {
 
 	@Override
 	public int update(commande obj) {
+		
 		client c= obj.getCli();
-		if(c.getType().equals("visiteur")) {
-			 this.servcli = new clientVisiteurImpl();
-             
-		}else {
-			 this.servcli = new clientIPrompl();
-
-
-
-		}
+		
 		if(this.findById(obj.getId()) == null ) {
 			return -1;
 			}else {
-			   this.servcli.save(c);
+				if(c.getType().equals("visiteur")) {
+					
+					
+					
+					this.servclivi = new clientVisiteurImpl();
+					this.servclivi.save(c);
+		             
+				}else {
+					 this.servclipro = new clientIPrompl();
+					 this.servclipro.save(c);
+
+
+				}
 				cd.save(obj);
 				return 0;
 			}
