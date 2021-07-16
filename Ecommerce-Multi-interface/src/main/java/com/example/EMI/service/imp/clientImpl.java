@@ -10,7 +10,7 @@ import com.example.EMI.bean.client;
 import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
-
+@Service
 public class clientImpl implements clientservice{
 	@Autowired
 	private clientDao cd;

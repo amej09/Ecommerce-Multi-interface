@@ -17,6 +17,7 @@ import com.example.EMI.service.facade.produitService;
 public class commandeImpl implements commandeService {
 	@Autowired
 	private commandeDoa cd;
+	
 	private clientservice servcli;
 	@Autowired
 	private produitService ps ;
@@ -52,10 +53,10 @@ public class commandeImpl implements commandeService {
 	public int update(commande obj) {
 		client c= obj.getCli();
 		if(c.getType().equals("visiteur")) {
-			servcli = new clientVisiteurImpl();
-
+			 this.servcli = new clientVisiteurImpl();
+             
 		}else {
-			servcli = new clientIPrompl();
+			 this.servcli = new clientIPrompl();
 
 
 
@@ -63,7 +64,7 @@ public class commandeImpl implements commandeService {
 		if(this.findById(obj.getId()) == null ) {
 			return -1;
 			}else {
-				servcli.save(c);
+			   this.servcli.save(c);
 				cd.save(obj);
 				return 0;
 			}

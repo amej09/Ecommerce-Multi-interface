@@ -10,11 +10,12 @@ import com.example.EMI.bean.client;
 import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
-
+@Service
 public class clientIPrompl implements clientservice{
 	@Autowired
 	private clientDao cd;
 	
+	@Autowired
 	public clientIPrompl() {
 		super();
 	}
@@ -22,8 +23,8 @@ public class clientIPrompl implements clientservice{
 	@Override
 	public client findById(Long id) {
 		
-		if(cd.findById(id).isPresent()){
-			return cd.findById(id).get();
+		if(this.cd.findById(id).isPresent()){
+			return this.cd.findById(id).get();
 		}else {
 			return null;
 		}
@@ -32,11 +33,10 @@ public class clientIPrompl implements clientservice{
 	@Override
 	public int save(client obj) {
 		if(this.findById(obj.getId()) != null ) {
-			
-		return -1;
+			return -1;
 		}else {
 			obj.setType("ClientPro");
-			cd.save(obj);
+			this.cd.save(obj);
 			return 0;
 		}
 		

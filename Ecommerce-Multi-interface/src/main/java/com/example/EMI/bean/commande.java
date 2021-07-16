@@ -20,6 +20,7 @@ public class commande {
 	private client cli;
 	@OneToOne
 	private produit produit ;
+	
 	public long getId() {
 		return id;
 	}

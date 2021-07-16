@@ -21,8 +21,8 @@ import com.example.EMI.service.imp.clientImpl;
 @RequestMapping("EMI/client")
 public class clientRest {
 
-	
-	private clientservice cs = new clientImpl();
+	@Autowired
+	private clientImpl cs ;
 
 	@GetMapping("/id/{id}")
 	public client findById(@PathVariable Long id) {
