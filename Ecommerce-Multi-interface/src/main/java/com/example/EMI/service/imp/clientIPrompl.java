@@ -11,11 +11,11 @@ import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
 
-public class clientImpl implements clientservice{
+public class clientIPrompl implements clientservice{
 	@Autowired
 	private clientDao cd;
 	
-	public clientImpl() {
+	public clientIPrompl() {
 		super();
 	}
 
@@ -35,6 +35,7 @@ public class clientImpl implements clientservice{
 			
 		return -1;
 		}else {
+			obj.setType("ClientPro");
 			cd.save(obj);
 			return 0;
 		}

@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.EMI.bean.client;
 import com.example.EMI.bean.commande;
 import com.example.EMI.bean.produit;
 import com.example.EMI.dao.commandeDoa;
+import com.example.EMI.service.facade.clientservice;
 import com.example.EMI.service.facade.commandeService;
 import com.example.EMI.service.facade.produitService;
 
@@ -14,6 +17,7 @@ import com.example.EMI.service.facade.produitService;
 public class commandeImpl implements commandeService {
 	@Autowired
 	private commandeDoa cd;
+	private clientservice servcli;
 	@Autowired
 	private produitService ps ;
 	
@@ -46,9 +50,20 @@ public class commandeImpl implements commandeService {
 
 	@Override
 	public int update(commande obj) {
+		client c= obj.getCli();
+		if(c.getType().equals("visiteur")) {
+			servcli = new clientVisiteurImpl();
+
+		}else {
+			servcli = new clientIPrompl();
+
+
+
+		}
 		if(this.findById(obj.getId()) == null ) {
 			return -1;
 			}else {
+				servcli.save(c);
 				cd.save(obj);
 				return 0;
 			}

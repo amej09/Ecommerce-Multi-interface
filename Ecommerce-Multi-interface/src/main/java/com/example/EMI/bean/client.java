@@ -19,6 +19,7 @@ public class client {
 	private String tel;
 	private Date date_creation_compte;
 	private String adresse;
+	private String type;
 	private String password;
 	public Long getId() {
 		return id;
@@ -68,34 +69,17 @@ public class client {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public client(Long id, String username, String nom, String prenom, String email, String tel,
-			Date date_creation_compte, String adresse, String password) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.tel = tel;
-		this.date_creation_compte = date_creation_compte;
-		this.adresse = adresse;
-		this.password = password;
-	}
-	public client() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "client [id=" + id + ", username=" + username + ", nom=" + nom + ", prenom=" + prenom + ", email="
-				+ email + ", tel=" + tel + ", date_creation_compte=" + date_creation_compte + ", adresse=" + adresse
-				+ ", password=" + password + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -109,6 +93,7 @@ public class client {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
 		result = prime * result + ((tel == null) ? 0 : tel.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -161,6 +146,11 @@ public class client {
 				return false;
 		} else if (!tel.equals(other.tel))
 			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -168,5 +158,30 @@ public class client {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "client [id=" + id + ", username=" + username + ", nom=" + nom + ", prenom=" + prenom + ", email="
+				+ email + ", tel=" + tel + ", date_creation_compte=" + date_creation_compte + ", adresse=" + adresse
+				+ ", type=" + type + ", password=" + password + "]";
+	}
+	public client(Long id, String username, String nom, String prenom, String email, String tel,
+			Date date_creation_compte, String adresse, String type, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.tel = tel;
+		this.date_creation_compte = date_creation_compte;
+		this.adresse = adresse;
+		this.type = type;
+		this.password = password;
+	}
+	public client() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 }

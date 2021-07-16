@@ -17,6 +17,8 @@ public class commande {
 	private Date dateCommande ;
 	private String etatCommande ;
 	@OneToOne
+	private client cli;
+	@OneToOne
 	private produit produit ;
 	public long getId() {
 		return id;
@@ -42,33 +44,23 @@ public class commande {
 	public void setEtatCommande(String etatCommande) {
 		this.etatCommande = etatCommande;
 	}
+	public client getCli() {
+		return cli;
+	}
+	public void setCli(client cli) {
+		this.cli = cli;
+	}
 	public produit getProduit() {
 		return produit;
 	}
 	public void setProduit(produit produit) {
 		this.produit = produit;
 	}
-	public commande(long id, String ref, Date dateCommande, String etatCommande, com.example.EMI.bean.produit produit) {
-		super();
-		this.id = id;
-		this.ref = ref;
-		this.dateCommande = dateCommande;
-		this.etatCommande = etatCommande;
-		this.produit = produit;
-	}
-	public commande() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "commande [id=" + id + ", ref=" + ref + ", dateCommande=" + dateCommande + ", etatCommande="
-				+ etatCommande + ", produit=" + produit + "]";
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cli == null) ? 0 : cli.hashCode());
 		result = prime * result + ((dateCommande == null) ? 0 : dateCommande.hashCode());
 		result = prime * result + ((etatCommande == null) ? 0 : etatCommande.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -85,6 +77,11 @@ public class commande {
 		if (getClass() != obj.getClass())
 			return false;
 		commande other = (commande) obj;
+		if (cli == null) {
+			if (other.cli != null)
+				return false;
+		} else if (!cli.equals(other.cli))
+			return false;
 		if (dateCommande == null) {
 			if (other.dateCommande != null)
 				return false;
@@ -109,7 +106,25 @@ public class commande {
 			return false;
 		return true;
 	}
-	
+	@Override
+	public String toString() {
+		return "commande [id=" + id + ", ref=" + ref + ", dateCommande=" + dateCommande + ", etatCommande="
+				+ etatCommande + ", cli=" + cli + ", produit=" + produit + "]";
+	}
+	public commande(long id, String ref, Date dateCommande, String etatCommande, client cli,
+			com.example.EMI.bean.produit produit) {
+		super();
+		this.id = id;
+		this.ref = ref;
+		this.dateCommande = dateCommande;
+		this.etatCommande = etatCommande;
+		this.cli = cli;
+		this.produit = produit;
+	}
+	public commande() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	

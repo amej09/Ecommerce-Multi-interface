@@ -2,7 +2,6 @@ package com.example.EMI.service.imp;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +9,11 @@ import com.example.EMI.bean.client;
 import com.example.EMI.dao.clientDao;
 import com.example.EMI.service.facade.clientservice;
 
-
-public class clientImpl implements clientservice{
+public class clientVisiteurImpl implements clientservice{
 	@Autowired
 	private clientDao cd;
 	
-	public clientImpl() {
+	public clientVisiteurImpl() {
 		super();
 	}
 
@@ -35,6 +33,7 @@ public class clientImpl implements clientservice{
 			
 		return -1;
 		}else {
+			obj.setType("visiteur");
 			cd.save(obj);
 			return 0;
 		}
@@ -69,10 +68,4 @@ public class clientImpl implements clientservice{
 		// TODO Auto-generated method stub
 		return cd.findAll();
 	}
-	
-	
-	
-
-	
-
 }

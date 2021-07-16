@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EMI.bean.client;
 import com.example.EMI.service.facade.clientservice;
+import com.example.EMI.service.imp.clientImpl;
 
 
 @RestController
 @RequestMapping("EMI/client")
 public class clientRest {
 
-	@Autowired
-	private clientservice cs;
+	
+	private clientservice cs = new clientImpl();
 
 	@GetMapping("/id/{id}")
 	public client findById(@PathVariable Long id) {
